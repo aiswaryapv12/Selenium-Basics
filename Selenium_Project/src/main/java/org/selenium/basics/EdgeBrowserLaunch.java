@@ -10,6 +10,16 @@ public class EdgeBrowserLaunch {
 		WebDriver driver = new EdgeDriver();
 		driver.get("https://www.seleniumeasy.com/");
 		driver.manage().window().maximize();
+		String title =driver.getTitle();
+		System.out.println(title);
+		String currenturl =driver.getCurrentUrl();
+		System.out.println(currenturl);
+		String windowhandle=driver.getWindowHandle();
+		System.out.println(windowhandle);
+		String pagesource=driver.getPageSource();
+		System.out.println(pagesource);
+		driver.close();
+		
 		
 
 	}
