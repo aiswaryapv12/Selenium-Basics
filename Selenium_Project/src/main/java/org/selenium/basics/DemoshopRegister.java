@@ -26,7 +26,7 @@ public class DemoshopRegister {
 		confirmpassword_field.sendKeys("aiswarya");
 		WebElement register_button =driver.findElement(By.id("register-button"));
 		register_button.click();
-		
+	
 		
 		
 	}
