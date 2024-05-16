@@ -94,7 +94,7 @@ public class AssignmentTask {
 		submit.click();
 		WebElement displayedtext= driver.findElement(By.cssSelector("div[id='message-one']"));
 		String text= displayedtext.getText();
-		System.out.println(" DISPLAYED TEXT IS"+text);
+		System.out.println(" DISPLAYED TEXT IS "+text);
 		
 		
 		
