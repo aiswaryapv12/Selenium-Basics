@@ -113,6 +113,39 @@ public class Commands {
 		 submit_button.click();
 	 }
 	 
+	 public void verifyisSelected()
+	 {
+		 WebDriver driver = new ChromeDriver();
+		 driver.get("https://demowebshop.tricentis.com/register");
+		 driver.manage().window().maximize();
+		 WebElement gender_field = driver.findElement(By.xpath("//input[@id='gender-male']"));
+		boolean status = gender_field.isSelected();
+		System.out.println(" check button is not selected or not"+status);
+		gender_field.click();
+		boolean statusonclick =gender_field.isSelected();
+		System.out.println(" check whether button is selected  :"+statusonclick);
+	 }
+	 
+	 public void verifyisEnabled()
+	 {
+		 WebDriver driver= new ChromeDriver();
+		 driver.get("https://demowebshop.tricentis.com/");
+		 driver.manage().window().maximize();
+		 WebElement subscibe_button = driver.findElement(By.xpath("//input[@id='newsletter-subscribe-button']"));
+		 boolean isSubscribeButtonEnabled =subscibe_button.isEnabled();
+		 System.out.println("cheeck whether subscribe button enabled for not    :"+isSubscribeButtonEnabled);
+	 }
+	
+	 
+	 public void verifyisDisplayed()
+	 {
+		 WebDriver driver = new ChromeDriver();
+		 driver.get("https://demowebshop.tricentis.com/");
+		 driver.manage().window().maximize();
+		 WebElement vote_button= driver.findElement(By.xpath("//input[@id='vote-poll-1']"));
+		boolean displayedstatus = vote_button.isDisplayed();
+		System.out.println(" check whether button is displayed or not "+displayedstatus);
+	 }
 	public static void main(String[] args) {
 	
 		Commands obj = new Commands();
@@ -125,7 +158,10 @@ public class Commands {
 		//obj.verifyPartialLinkText();
 		//obj.totalNoOfTagInTheApplication();
 		//obj.verifyXpath();
-		obj.verifyLoginByCss();
+		//obj.verifyLoginByCss();
+		//obj. verifyisSelected(); 
+		//obj.verifyisEnabled();
+		obj.verifyisDisplayed();
 
 	}
 
