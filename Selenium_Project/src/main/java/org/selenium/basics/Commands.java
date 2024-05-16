@@ -132,8 +132,8 @@ public class Commands {
 		 driver.get("https://demowebshop.tricentis.com/");
 		 driver.manage().window().maximize();
 		 WebElement subscibe_button = driver.findElement(By.xpath("//input[@id='newsletter-subscribe-button']"));
-		 boolean isSubscribeButtonEnabled =subscibe_button.isEnabled();
-		 System.out.println("cheeck whether subscribe button enabled for not    :"+isSubscribeButtonEnabled);
+		 boolean subscribebutton =subscibe_button.isEnabled();
+		 System.out.println("cheeck whether subscribe button enabled for not    :"+subscribebutton);
 	 }
 	
 	 
