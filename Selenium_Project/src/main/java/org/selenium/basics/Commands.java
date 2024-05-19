@@ -188,15 +188,45 @@ public class Commands {
 		select.selectByIndex(2);
 		select.selectByIndex(0);
 		List<WebElement> listofselectedoption =select.getAllSelectedOptions();
+		
 		for(WebElement e:listofselectedoption)
 		{
 			System.out.println(e.getText());
 		}
+		
+		  /* int size = listofselectedoption.size();
+			for(int i = 0; i < size; i++) 
+			{
+            	String options =listofselectedoption.get(i).getText();
+                 System.out.println(options);
+			}*/
+		
 		select.deselectByIndex(0);
 		
 	 }
 	 
 	 
+	 
+	 public void verifyColourFromDropDown()
+	 {
+		 WebDriver driver= new ChromeDriver();
+		 driver.get("https://selenium.qabible.in/select-input.php");
+		 driver.manage().window().maximize();
+		 WebElement color = driver.findElement(By.xpath("//select[@id='single-input-field']"));
+		 Select select =  new Select(color);
+		 select.selectByIndex(0);
+		// select.selectByValue("Red");
+		//select.selectByVisibleText("Green");
+		WebElement selected_text =select.getFirstSelectedOption();
+		System.out.println("selected value"+selected_text.getText());
+		List<WebElement> alldrop =select.getOptions();
+		int noofoption=  alldrop.size();
+		System.out.println(" no of drop down "+noofoption);
+			
+		 
+		 
+		 
+	 }
 	public static void main(String[] args) {
 	
 		Commands obj = new Commands();
@@ -215,7 +245,8 @@ public class Commands {
 		//obj.verifyisDisplayed();
 		//obj.verifyValueFromDropDown();
 		//obj.verifyTotalNoOfValue();
-		obj.verifyMultipleOptionFromDropDown();
+		//obj.verifyMultipleOptionFromDropDown();
+		obj.verifyColourFromDropDown();
 
 	}
 
