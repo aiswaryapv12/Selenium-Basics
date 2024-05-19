@@ -214,7 +214,7 @@ public class Commands {
 		 driver.manage().window().maximize();
 		 WebElement color = driver.findElement(By.xpath("//select[@id='single-input-field']"));
 		 Select select =  new Select(color);
-		 select.selectByIndex(0);
+		 select.selectByIndex(2);
 		// select.selectByValue("Red");
 		//select.selectByVisibleText("Green");
 		WebElement selected_text =select.getFirstSelectedOption();
@@ -224,9 +224,9 @@ public class Commands {
 		System.out.println(" no of drop down "+noofoption);
 			
 		 
-		 
-		 
-	 }
+		  }
+	 
+	 
 	public static void main(String[] args) {
 	
 		Commands obj = new Commands();
