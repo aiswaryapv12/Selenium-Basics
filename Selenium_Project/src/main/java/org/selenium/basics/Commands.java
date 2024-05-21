@@ -1,11 +1,14 @@
 package org.selenium.basics;
 import java.util.List;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+
+import io.opentelemetry.exporter.logging.SystemOutLogRecordExporter;
 
 
 public class Commands {
@@ -224,8 +227,84 @@ public class Commands {
 		System.out.println(" no of drop down "+noofoption);
 			
 		 
-		  }
+		 }
 	 
+	 public void verifySimpleAlert()
+	 {
+		 WebDriver driver = new ChromeDriver();
+		 driver.get("https://demoqa.com/alerts");
+		 driver.manage().window().maximize();
+		 WebElement simplealert =driver.findElement(By.xpath("//button[@id='alertButton']"));
+		 simplealert.click();
+		 Alert alert =driver.switchTo().alert();
+		 alert.accept();
+		 driver.close();
+		 
+	 }
+	 public void verifyConfimationAlert()
+	 {
+		 WebDriver driver = new ChromeDriver();
+		 driver.get("https://demoqa.com/alerts");
+		 driver.manage().window().maximize();
+		 WebElement confirm_button = driver.findElement(By.xpath("//button[@id='confirmButton']"));
+		 confirm_button.click();
+		 Alert alert =driver.switchTo().alert();
+		 String text = alert.getText();
+		 System.out.println("confimation message "+text);
+		 alert.accept();
+		 WebElement confirmation_text =driver.findElement(By.xpath("//span[@id='confirmResult']")); 
+		 String text_result =confirmation_text.getText();
+		 System.out.println("confimation meassge result "+ text_result);
+		 
+		 
+		 
+		 
+	 }
+	 
+	 public void verifyPromptAlert()
+	 {
+		 
+		 WebDriver driver =new ChromeDriver();
+		 driver.get("https://demoqa.com/alerts");
+		 driver.manage().window().maximize();
+		 WebElement prompt_button = driver.findElement(By.cssSelector("button#promtButton"));
+		 prompt_button.click();
+		 Alert alert = driver.switchTo().alert();
+		 String alert_text =alert.getText();
+		 System.out.println("alert text "+alert_text);
+		 alert.sendKeys("AISWARYA");
+		 alert.accept();
+		 WebElement result_message = driver.findElement(By.xpath("//span[@id='promptResult']"));
+		 String result_text =result_message.getText();
+		 System.out.println("result message "+result_text);
+		 
+	 }
+	 
+	 
+	 public void verifyCustomerDelete()
+	 {
+		 WebDriver driver = new ChromeDriver();
+		 driver.get("https://demo.guru99.com/test/delete_customer.php");
+		 driver.manage().window().maximize();
+		 WebElement customerid = driver.findElement(By.xpath("//input[@name='cusid']"));
+		 customerid.sendKeys("455");
+		 WebElement submit_button =driver.findElement(By.xpath("//input[@name='submit']"));
+		 submit_button.click();
+		 Alert alert = driver.switchTo().alert();
+		 String alert_message =alert.getText();
+		 System.out.println(" alert message "+alert_message);
+		 alert.accept();
+		 String success_msg =alert.getText();
+		 System.out.println("success mesaage "+success_msg );
+		 alert.accept();
+		 
+		 
+		 
+		 
+		 
+	 }
+	   
+
 	 
 	public static void main(String[] args) {
 	
@@ -246,7 +325,12 @@ public class Commands {
 		//obj.verifyValueFromDropDown();
 		//obj.verifyTotalNoOfValue();
 		//obj.verifyMultipleOptionFromDropDown();
-		obj.verifyColourFromDropDown();
+		//obj.verifyColourFromDropDown();
+	
+		//obj.verifySimpleAlert();
+		//obj.verifyConfimationAlert();
+		//obj.verifyPromptAlert();
+		obj.verifyCustomerDelete();
 
 	}
 
