@@ -27,10 +27,7 @@ public class Assignment_Iframe {
 		driver.switchTo().frame("frm2");
 		WebElement basiccontrols = driver.findElement(By.cssSelector("#selectnav1"));
 		Select dropdown2 = new Select(basiccontrols);
-		dropdown2.selectByIndex(6);
-		
-		
-		
+		dropdown2.selectByIndex(6);	
 	
 	}
 	
