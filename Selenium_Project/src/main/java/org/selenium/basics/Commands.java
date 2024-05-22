@@ -368,6 +368,41 @@ public class Commands {
 			 action.moveToElement(mouseover).build().perform();
 		   
 	   }
+	   
+	   
+	   public void verifyFileUpload()
+	   {
+		   WebDriver driver = new ChromeDriver();
+		   driver.get("https://demo.guru99.com/test/upload/");
+		   driver.manage().window().maximize();
+		   WebElement choose_field = driver.findElement(By.xpath("//input[@id=\"uploadfile_0\"]"));
+		   choose_field.sendKeys("C:\\Users\\user\\git\\Selenium-Basics\\Selenium_Project\\src\\main\\resources\\Whatsapp my profile.docx");
+		   WebElement accept =driver.findElement(By.xpath("//input[@id=\"terms\"]"));
+		  accept.click();
+		  WebElement submit_button = driver.findElement(By.xpath("//button[@id=\"submitbutton\"]"));
+		  submit_button.click();
+	   }
+	   
+	   
+	   public void verifyFrames()
+	   {
+		   WebDriver driver = new ChromeDriver();
+		   driver.get("https://demoqa.com/frames");
+		   driver.manage().window().maximize();
+		    List<WebElement> nooframes= driver.findElements(By.tagName("iframe"));
+		    int  tags = nooframes.size();
+		    System.out.println(" no of tags "+tags );
+		  //  driver.switchTo().frame(1); 
+		   // driver.switchTo().frame("frame1");
+		    WebElement Frame1 = driver.findElement(By.cssSelector("#frame1"));
+		    driver.switchTo().frame(Frame1);
+		    WebElement textofframes= driver.findElement(By.id("sampleHeading"));
+		     String text =textofframes.getText();
+		     System.out.println(" text out is "+text);
+		   
+		   
+	   }
+
 	public static void main(String[] args) {
 	
 		Commands obj = new Commands();
@@ -397,7 +432,9 @@ public class Commands {
 		//obj.verifyDoubleClick();
 		//obj.verifyDragAndDrop();
 		//obj.verifyDragAndOffset();
-		obj.verifyMouseover();
+		//obj.verifyMouseover();
+		//obj. verifyFileUpload();
+		obj.verifyFrames();
 		
 
 	}
