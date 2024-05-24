@@ -1,5 +1,7 @@
 package org.selenium.basics;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -310,7 +312,7 @@ public class Commands {
 			 action.contextClick(rightclick_button).build().perform();
 			 driver.close();
 			 
-			 
+			                              
 			 
 	   }
 
@@ -402,6 +404,37 @@ public class Commands {
 		   
 		   
 	   }
+	   public void verifyMultipleWindowHandling()
+	   {
+		   WebDriver driver = new ChromeDriver();
+		   driver.get("https://demo.guru99.com/popup.php");
+		   driver.manage().window().maximize();
+		   String parentwindowid =driver.getWindowHandle();
+		   System.out.println(" parent window id "+parentwindowid );
+		   WebElement click_button =driver.findElement(By.xpath("//a[text()='Click Here']"));
+		   click_button.click();
+		   Set<String> windowhandle =driver.getWindowHandles();
+		   System.out.println("set of window handles  "+ windowhandle);
+		   Iterator<String> value= windowhandle.iterator();
+		   while(value.hasNext())
+		   {
+			   String handleid = value.next();
+			   if(!handleid.equals(parentwindowid))
+			   {
+				   driver.switchTo().window(handleid);
+				   WebElement email = driver.findElement(By.xpath("//input[@name='emailid']"));
+				   email.sendKeys("aiisis@gmail.com");
+				   WebElement submit_button = driver.findElement(By.xpath("//input[@name='btnLogin']"));
+				   submit_button.click();
+				   //driver.close();
+				   
+				   
+			   }
+		   }
+		   driver.switchTo().defaultContent();
+		   
+		   driver.quit();
+	   }
 
 	public static void main(String[] args) {
 	
@@ -434,7 +467,8 @@ public class Commands {
 		//obj.verifyDragAndOffset();
 		//obj.verifyMouseover();
 		//obj. verifyFileUpload();
-		obj.verifyFrames();
+		//obj.verifyFrames();
+		obj.verifyMultipleWindowHandling();
 		
 
 	}
