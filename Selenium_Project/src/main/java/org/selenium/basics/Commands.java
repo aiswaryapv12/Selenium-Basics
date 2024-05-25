@@ -435,6 +435,39 @@ public class Commands {
 		   
 		   driver.quit();
 	   }
+	   
+	   public void verifyDynamicTable()
+	   {
+		   WebDriver driver = new ChromeDriver();
+		   driver.get("https://money.rediff.com/indices");
+		   driver.manage().window().maximize();
+		   WebElement showmore = driver.findElement(By.xpath("//a[@id ='showMoreLess']"));
+		   showmore.click();
+		   WebElement webtable =driver.findElement(By.xpath("//table[@id ='dataTable']//tbody"));
+		   List<WebElement> rows =webtable.findElements(By.tagName("tr"));
+		   int rowsize = rows.size();
+		   for(int i =0;i<rowsize;i++)
+		   {
+			   List<WebElement> column =rows.get(i).findElements(By.tagName("td"));
+			    int columnsize = column.size();
+			    for(int j=0;j<columnsize;j++)
+			    {
+			    	String celltext =column.get(j).getText();
+			    	if(celltext.equals("S&P BSE 200"))
+			    	{
+			    		System.out.println("prevclose value is"+column.get(1).getText());
+			    	}
+			    }
+		   }
+		   WebElement table =driver.findElement(By.xpath("//table[@id ='dataTable']//tbody//tr[2]"));
+		   System.out.println(table.getText());
+		   WebElement tablecolumn=driver.findElement(By.xpath("//table[@id ='dataTable']//tbody//td[2]"));
+		   System.out.println(" value in colum "+tablecolumn.getText());
+		   		
+		   
+		   driver.close();
+		   
+	   }
 
 	public static void main(String[] args) {
 	
@@ -468,7 +501,8 @@ public class Commands {
 		//obj.verifyMouseover();
 		//obj. verifyFileUpload();
 		//obj.verifyFrames();
-		obj.verifyMultipleWindowHandling();
+		//obj.verifyMultipleWindowHandling();
+		obj.verifyDynamicTable();
 		
 
 	}
