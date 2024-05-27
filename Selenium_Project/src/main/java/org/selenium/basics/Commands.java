@@ -446,6 +446,7 @@ public class Commands {
 		   WebElement webtable =driver.findElement(By.xpath("//table[@id ='dataTable']//tbody"));
 		   List<WebElement> rows =webtable.findElements(By.tagName("tr"));
 		   int rowsize = rows.size();
+		   
 		   for(int i =0;i<rowsize;i++)
 		   {
 			   List<WebElement> column =rows.get(i).findElements(By.tagName("td"));
@@ -459,9 +460,12 @@ public class Commands {
 			    	}
 			    }
 		   }
+		   //for getting complete row
 		   WebElement table =driver.findElement(By.xpath("//table[@id ='dataTable']//tbody//tr[2]"));
 		   System.out.println(table.getText());
-		   WebElement tablecolumn=driver.findElement(By.xpath("//table[@id ='dataTable']//tbody//td[2]"));
+		   
+		   
+		   WebElement tablecolumn=driver.findElement(By.xpath("//table[@id ='dataTable']//tbody//tr[3]"));
 		   System.out.println(" value in colum "+tablecolumn.getText());
 		   		
 		   
