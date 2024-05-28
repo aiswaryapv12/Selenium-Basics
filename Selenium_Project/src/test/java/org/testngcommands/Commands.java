@@ -1,5 +1,10 @@
 package org.testngcommands;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Commands extends BrowserLaunch{
@@ -8,8 +13,74 @@ public class Commands extends BrowserLaunch{
 	public void verifyHomePageTitle() 
 	{
 		driver.get("https://demowebshop.tricentis.com/");
-		String title =driver.getTitle();
-		System.out.println(" title of the page "+title);
+		String actualtitle =driver.getTitle();
+		System.out.println(" title of the page "+actualtitle);
+		String expectedtitle= "Demo Web Shop";
+		Assert.assertEquals(actualtitle, expectedtitle,"INVALID TITLE");
 	}
 
-}
+	
+
+	@Test
+	public void verifyDemoUserLogin()
+	{
+		driver.get("https://demowebshop.tricentis.com/");
+		WebElement login = driver.findElement(By.className("ico-login"));
+		login.click();
+		WebElement email_field =driver.findElement(By.id("Email"));
+		email_field.sendKeys("aiswaryapv25@gmail.com");
+		WebElement password_field = driver.findElement(By.id("Password"));
+		password_field.sendKeys("123456789");
+		WebElement login_button = driver.findElement(By.className( "login-button"));
+		login_button.click();
+		WebElement actual_text =driver.findElement(By.xpath("//a[text()='aiswaryapv25@gmail.com']"));
+		String actual_mail =actual_text.getText();
+		System.out.println("Actual email id is "+actual_mail);
+		String expected_email ="aiswaryapv25@gmail.com";
+		Assert.assertEquals(actual_mail, expected_email, "invalid email");
+		
+		
+	}
+	@Test
+	public void verifyisSelected()
+	{
+		driver.get("https://demowebshop.tricentis.com/register");
+		WebElement gender_field = driver.findElement(By.xpath("//input[@id='gender-male']"));
+		boolean actual_status = gender_field.isSelected();
+		System.out.println(" status of radio button is selected or not"+actual_status);
+		Assert.assertFalse(actual_status, "GENDER FIELD IS SELECTED");
+		gender_field.click();
+		boolean statusonclick =gender_field.isSelected();
+		System.out.println(" check whether radio button is selected  :"+statusonclick);
+		Assert.assertTrue(statusonclick, "Gender field is not selected");
+	}
+	
+	
+	@Test
+	 public void verifyisEnabled()
+	 {
+		
+		 driver.get("https://demowebshop.tricentis.com/");
+		 WebElement subscibe_button = driver.findElement(By.xpath("//input[@id='newsletter-subscribe-button']"));
+		 boolean subscribebutton =subscibe_button.isEnabled();
+		 System.out.println("cheeck whether subscribe button enabled for not    :"+subscribebutton);
+		 Assert.assertTrue(subscribebutton, "SUBSCRIBE BUTTON IS NOT ENABLED");
+	 }
+	
+	@Test
+	 public void verifyisDisplayed()
+	 {
+		 WebDriver driver = new ChromeDriver();
+		 driver.get("https://demowebshop.tricentis.com/");
+		 driver.manage().window().maximize();
+		 WebElement vote_button= driver.findElement(By.xpath("//input[@id='vote-poll-1']"));
+		 boolean displayedstatus = vote_button.isDisplayed();
+		 System.out.println(" check whether button is displayed or not "+displayedstatus);
+		 Assert.assertTrue(displayedstatus, "Button is not displayed");
+	 }
+	
+		
+
+	
+}  
+
