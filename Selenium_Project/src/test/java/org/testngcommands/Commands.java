@@ -1,9 +1,11 @@
 package org.testngcommands;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -70,16 +72,56 @@ public class Commands extends BrowserLaunch{
 	@Test
 	 public void verifyisDisplayed()
 	 {
-		 WebDriver driver = new ChromeDriver();
+		 
 		 driver.get("https://demowebshop.tricentis.com/");
-		 driver.manage().window().maximize();
 		 WebElement vote_button= driver.findElement(By.xpath("//input[@id='vote-poll-1']"));
 		 boolean displayedstatus = vote_button.isDisplayed();
 		 System.out.println(" check whether button is displayed or not "+displayedstatus);
 		 Assert.assertTrue(displayedstatus, "Button is not displayed");
 	 }
 	
+	@Test
+	public void verifyJavascriptExecutor()
+	{
+		 driver.get("https://demowebshop.tricentis.com/");
+		 JavascriptExecutor js = (JavascriptExecutor)driver;
+		 js.executeScript("document.getElementById(\"newsletter-email\").value='aiwaryaankaran123@gmail.com'");
+		 js.executeScript("document.getElementById(\"newsletter-subscribe-button\").click()");
+		 
 		
+	}
+	@Test
+	
+		public void verifyVerticalScroll()
+		{
+			 driver.get("https://demowebshop.tricentis.com/");
+			 JavascriptExecutor js =(JavascriptExecutor)driver;
+			 js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+		}
+	
+	@Test
+	public void verifyJavascriptDemoLogin()
+	{
+		driver.get("https://demowebshop.tricentis.com/login");
+		JavascriptExecutor js =(JavascriptExecutor)driver;
+		js.executeScript("document.getElementById(\"Email\").value ='aiswaryapv25@gmail.com'");
+		js.executeScript("document.getElementById(\"Password\").value='123456789'");
+		js.executeScript("document.querySelector('.login-button').click()");
+		
+	}
+	@Test
+	
+	public void verifyJavascriptScroll()
+	{
+		 driver.get("https://demoqa.com/dragabble");
+		 WebElement drag =driver.findElement(By.xpath("//div[@id='dragBox']"));
+		
+		 JavascriptExecutor js =(JavascriptExecutor)driver;
+		 js.executeScript("window.scrollBy(0,150)");
+		 Actions action = new Actions(driver);
+		 action.dragAndDropBy(drag, 50, 100).build().perform();
+		
+	}
 
 	
 }  
