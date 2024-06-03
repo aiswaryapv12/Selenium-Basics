@@ -1,11 +1,21 @@
 package org.testngcommands;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.time.Duration;
+import java.util.NoSuchElementException;
+
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -122,7 +132,51 @@ public class Commands extends BrowserLaunch{
 		 action.dragAndDropBy(drag, 50, 100).build().perform();
 		
 	}
-
+	@Test
+	public void verifyKeyboardEvents() throws AWTException 
+	{
+		driver.get("https://demowebshop.tricentis.com/login");
+		Robot robot = new Robot();
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_T);
+		robot.keyRelease(KeyEvent.VK_CONTROL);
+		robot.keyRelease(KeyEvent.VK_T);
+		
+	}
+	@Test
+	public void verifyWait()
+	{
+		driver.get("https://demoqa.com/alerts");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
+		//WebDriverWait wait =new WebDriverWait(driver,Duration.ofSeconds(20)); 
+		//wait.until( ExpectedConditions.visibilityOfElementLocated(By.id("timerAlertButton")));
+		WebElement clickme = driver.findElement(By.id("timerAlertButton"));
+		 clickme.click();
+		 //wait.until(ExpectedConditions.alertIsPresent());
+		 Alert alert =driver.switchTo().alert();
+		 alert.accept();
+		 
+	}
+	@Test
+	 public void verifyFluentWait()
+	 {
+		 driver.get("https://demoqa.com/alerts");
+		 JavascriptExecutor js =(JavascriptExecutor)driver;
+		 js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+		 FluentWait wait = new FluentWait(driver);
+		 wait.withTimeout(Duration.ofSeconds(20));
+		 wait.pollingEvery(Duration.ofSeconds(3));
+		 wait.ignoring(NoSuchElementException.class);
+		 
+		  WebElement clickme = driver.findElement(By.id("timerAlertButton"));
+		 clickme.click();
+		 wait.until(ExpectedConditions.alertIsPresent());
+		
+		 
+		 Alert alert = driver.switchTo().alert();
+		 alert.accept();
+	 }
+	
 	
 }  
 
