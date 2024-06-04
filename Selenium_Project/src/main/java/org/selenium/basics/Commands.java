@@ -465,14 +465,15 @@ public class Commands {
 		   System.out.println(table.getText());
 		   
 		   
-		   WebElement tablecolumn=driver.findElement(By.xpath("//table[@id ='dataTable']//tbody//tr[3]"));
+		   WebElement tablecolumn=driver.findElement(By.xpath("//table[@id ='dataTable']//tbody//tr[1]//td[2]"));
 		   System.out.println(" value in colum "+tablecolumn.getText());
 		   		
 		   
-		   driver.close();
+		  driver.close();
 		   
 	   }
 
+	
 	public static void main(String[] args) {
 	
 		Commands obj = new Commands();
@@ -507,6 +508,7 @@ public class Commands {
 		//obj.verifyFrames();
 		//obj.verifyMultipleWindowHandling();
 		obj.verifyDynamicTable();
+		
 		
 
 	}
