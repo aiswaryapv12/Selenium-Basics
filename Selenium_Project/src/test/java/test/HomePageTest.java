@@ -32,7 +32,7 @@ public class HomePageTest extends Base {
 			String text = radiobutton.getText();
 			System.out.println("options "+text);
 			
-			if(text.equals("Good"))
+			if(text.equalsIgnoreCase("Good"))
 			{
 				radiobutton.click();
 				
