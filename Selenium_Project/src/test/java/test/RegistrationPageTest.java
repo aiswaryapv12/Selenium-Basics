@@ -29,31 +29,32 @@ public class RegistrationPageTest extends Base {
 	@Test
 	public void verifyUserRegistration()
 	{
-		driver.get("https://demowebshop.tricentis.com/");
-		WebElement register_field =driver.findElement(By.className("ico-register"));
-		register_field.click();
-		WebElement gender_field =driver.findElement(By.id("gender-female"));
-		gender_field.click();
-		WebElement firstname_field =driver.findElement(By.className("single-line"));
-		firstname_field.sendKeys("Aiswarya");
-		WebElement lastname_field =driver.findElement(By.id("LastName"));
-		lastname_field.sendKeys("P V");
-		WebElement email_field =driver.findElement(By.id("Email"));
-		email_field.sendKeys("aiswaryas12g3@gmail.com");
-		WebElement password_field =driver.findElement(By.id("Password"));
-		password_field.sendKeys("aiswarya");
-		WebElement confirmpassword_field =driver.findElement(By.id("ConfirmPassword"));
-		confirmpassword_field.sendKeys("aiswarya");
-		WebElement register_button =driver.findElement(By.id("register-button"));
-		register_button.click();
-		WebElement result = driver.findElement(By.className("result"));
-		String actual_result =result.getText();
-		System.out.println(" Actual result is "+actual_result);
-		String expected_result ="Your registration completed";
-		Assert.assertEquals(actual_result, expected_result,"Invalid registerationuser");
-			
 		
-	
+			
+		driver.get("https://demowebshop.tricentis.com/");
+		WebElement register_field=driver.findElement(By.xpath("//a[@class='ico-register']")) ;
+		register_field.click();
+		WebElement genderfemale=driver.findElement(By.xpath("//input[@id='gender-female']"));
+		genderfemale.click();
+		WebElement first_name=driver.findElement(By.xpath("//input[@id='FirstName']"));
+		first_name.sendKeys("Aiswarya");
+		WebElement last_name=driver.findElement(By.xpath("//input[@id='LastName']"));
+		last_name.sendKeys("P V");
+		WebElement email_field=driver.findElement(By.xpath("//input[@id='Email']"));
+		email_field.sendKeys("aiswarypva@gmail.com");
+		WebElement password=driver.findElement(By.xpath("//input[@id='Password']"));
+		password.sendKeys("1233444");
+		WebElement confirmpassword=driver.findElement(By.xpath("//input[@id='ConfirmPassword']"));
+		confirmpassword.sendKeys("1233444");
+		WebElement register_button=driver.findElement(By.xpath("//input[@id='register-button']"));
+		register_button.click();
+		WebElement message=driver.findElement(By.xpath("/html/body/div[4]/div[1]/div[4]/div[2]/div/div[2]/div[1]"));
+		String actualmessage=message.getText();
+		System.out.println("Actual Message: " +actualmessage);
+		String expectedmessage="Your registration completed";
+		Assert.assertEquals(actualmessage, expectedmessage, "Invalid Message");
 	}
-
+	
 }
+
+
