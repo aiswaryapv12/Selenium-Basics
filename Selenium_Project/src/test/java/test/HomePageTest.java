@@ -38,5 +38,9 @@ public class HomePageTest extends Base {
 				
 			}
 		}
+	   WebElement goodfield =driver.findElement(By.xpath("//input[@id='pollanswers-2']"));  
+	   boolean status =goodfield.isSelected();
+	   System.out.println(status);
+	   Assert.assertTrue(status,"good checkbox is not selected");
 	}
 }
