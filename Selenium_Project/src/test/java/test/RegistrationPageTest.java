@@ -1,25 +1,28 @@
 package test;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import automation_core.Base;
+import utilities.Excel_Utility;
 
 public class RegistrationPageTest extends Base {
 	
 	
 	
 	@Test
-	public void  verifyRegistrationPageTitle()
+	public void  verifyRegistrationPageTitle() throws IOException
 	{
 		driver.get("https://demowebshop.tricentis.com/");
 		WebElement register_field = driver.findElement(By.xpath("//a[text()='Register']"));
 		register_field.click();
 		String actual_title =driver.getTitle();
 		System.out.println("Actual title is "+actual_title);
-		String expcted_title="Demo Web Shop. Register";
+		String expcted_title=Excel_Utility.readStringData(0, 0, "Registration_Page");
 		Assert.assertEquals(actual_title, expcted_title, "Invalid title");
 		
 		
