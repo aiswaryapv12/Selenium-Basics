@@ -8,12 +8,13 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import automation_core.Base;
+import data_provider.Data_Providers;
 import utilities.Excel_Utility;
 
 public class LoginPageText extends Base {
 	
 	@Test
-	public void verifyLoginPageTitle() throws IOException
+	public void verifyLoginPageTitle() 
 	{
 		driver.get("https://demowebshop.tricentis.com/login");
 		String actualtitle =driver.getTitle();
@@ -25,7 +26,7 @@ public class LoginPageText extends Base {
 	}
 	
 	@Test
-	public void verifyUserLogin() throws IOException
+	public void verifyUserLogin() 
 	{
 		driver.get("https://demowebshop.tricentis.com/");
 		WebElement login = driver.findElement(By.className("ico-login"));
@@ -46,9 +47,25 @@ public class LoginPageText extends Base {
 	}
 	
 	
-	@Test
-	public void verifyUserLoginWithInvalidCredentials()
+	@Test(dataProvider="invalidUserCredentials",dataProviderClass=Data_Providers.class)
+	public void verifyUserLoginWithInvalidCredentials(String username, String password)
 	{
+		driver.get("https://demowebshop.tricentis.com/");
+		WebElement login = driver.findElement(By.className("ico-login"));
+		login.click();
+		WebElement email_field = driver.findElement(By.id("Email"));
+		email_field.sendKeys(username);
+		WebElement password_field =driver.findElement(By.id("Password"));
+		password_field.sendKeys(password);
+		WebElement login_button = driver.findElement(By.className( "login-button"));
+		login_button.click();
+		WebElement actual_result =driver.findElement(By.xpath("//span[text()='Login was unsuccessful. Please correct the errors and try again.']"));
+		String actual_msg =actual_result.getText();
+		String expected_result =Excel_Utility.readStringData(0, 2,"Login_Page");
+		Assert.assertEquals(actual_msg, expected_result,"Loginh is not successful");
+				
+
+
 		
 	}
 
