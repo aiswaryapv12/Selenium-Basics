@@ -62,7 +62,7 @@ public class LoginPageText extends Base {
 		WebElement actual_result =driver.findElement(By.xpath("//span[text()='Login was unsuccessful. Please correct the errors and try again.']"));
 		String actual_msg =actual_result.getText();
 		String expected_result =Excel_Utility.readStringData(0, 2,"Login_Page");
-		Assert.assertEquals(actual_msg, expected_result,"Loginh is not successful");
+		Assert.assertEquals(actual_msg, expected_result,"Login is successful");
 				
 
 

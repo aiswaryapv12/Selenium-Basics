@@ -56,7 +56,7 @@ public void closeBrower(ITestResult result) throws IOException
 	{
 		takeScreenShot(result);
 	}
-	//driver.close();
+	driver.close();
 	
 }
 

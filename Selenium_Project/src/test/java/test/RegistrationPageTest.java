@@ -15,7 +15,7 @@ public class RegistrationPageTest extends Base {
 	
 	
 	@Test
-	public void  verifyRegistrationPageTitle() throws IOException
+	public void  verifyRegistrationPageTitle()
 	{
 		driver.get("https://demowebshop.tricentis.com/");
 		WebElement register_field = driver.findElement(By.xpath("//a[text()='Register']"));

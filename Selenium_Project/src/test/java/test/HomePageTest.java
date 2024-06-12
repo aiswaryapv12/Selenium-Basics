@@ -14,8 +14,9 @@ import utilities.Excel_Utility;
 public class HomePageTest extends Base {
 	
 	@Test
-	public void verifyHomePageTitle() throws IOException
+	public void verifyHomePageTitle() 
 	{
+		
 		driver.get("https://demowebshop.tricentis.com/");
 		String actualtitle =driver.getTitle();
 		System.out.println(" title of the page "+actualtitle);
@@ -25,7 +26,7 @@ public class HomePageTest extends Base {
 	}
 	
 	@Test
-	public void verifyCommunityPollSelection() throws IOException
+	public void verifyCommunityPollSelection()
 	{
 		driver.get("https://demowebshop.tricentis.com/");
 		List<WebElement> checkbox_field =driver.findElements(By.xpath("//li[@class='answer']//input[@name ='pollanswers-1']//following-sibling::label"));
