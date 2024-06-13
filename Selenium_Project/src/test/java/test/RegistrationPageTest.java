@@ -69,7 +69,7 @@ public class RegistrationPageTest extends Base {
 		String actualmessage=message.getText();
 		//System.out.println("Actual Message: " +actualmessage);
 		String expectedmessage=Excel_Utility.readStringData(0, 1,"Registration_Page");
-		Assert.assertEquals(actualmessage, expectedmessage, "Invalid Message");
+		Assert.assertEquals(actualmessage, expectedmessage, "Registration is not complete");
 	}
 	
 }
