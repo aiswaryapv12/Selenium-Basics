@@ -52,7 +52,7 @@ public class LoginPageText extends Base {
 	{
 		driver.get("https://demowebshop.tricentis.com/");
 		WebElement login = driver.findElement(By.className("ico-login"));
-		login.click();
+		login.click(); 
 		WebElement email_field = driver.findElement(By.id("Email"));
 		email_field.sendKeys(username);
 		WebElement password_field =driver.findElement(By.id("Password"));

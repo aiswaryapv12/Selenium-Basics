@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 
 import automation_core.Base;
 import utilities.Excel_Utility;
+import utilities.RandomData_Utility;
 
 public class RegistrationPageTest extends Base {
 	
@@ -35,26 +36,39 @@ public class RegistrationPageTest extends Base {
 		
 			
 		driver.get("https://demowebshop.tricentis.com/");
+		String first_name =RandomData_Utility.getFirtName();
+		String last_name = RandomData_Utility.getLastName();
+		String email =first_name+"."+last_name+"@gmail.com";
+		String password =first_name+"."+last_name;
+		
 		WebElement register_field=driver.findElement(By.xpath("//a[@class='ico-register']")) ;
 		register_field.click();
+		
 		WebElement genderfemale=driver.findElement(By.xpath("//input[@id='gender-female']"));
 		genderfemale.click();
-		WebElement first_name=driver.findElement(By.xpath("//input[@id='FirstName']"));
-		first_name.sendKeys("Aiswarya");
-		WebElement last_name=driver.findElement(By.xpath("//input[@id='LastName']"));
-		last_name.sendKeys("P V");
+		
+		WebElement first_namefield=driver.findElement(By.xpath("//input[@id='FirstName']"));
+		first_namefield.sendKeys(first_name);
+		
+		WebElement last_namefield=driver.findElement(By.xpath("//input[@id='LastName']"));
+		last_namefield.sendKeys(last_name);
+		
 		WebElement email_field=driver.findElement(By.xpath("//input[@id='Email']"));
-		email_field.sendKeys("aiswarypva@gmail.com");
-		WebElement password=driver.findElement(By.xpath("//input[@id='Password']"));
-		password.sendKeys("1233444");
+		email_field.sendKeys(email);
+		
+		WebElement password_field=driver.findElement(By.xpath("//input[@id='Password']"));
+		password_field.sendKeys(password);
+		
+	
 		WebElement confirmpassword=driver.findElement(By.xpath("//input[@id='ConfirmPassword']"));
-		confirmpassword.sendKeys("1233444");
+		confirmpassword.sendKeys(password);
+		
 		WebElement register_button=driver.findElement(By.xpath("//input[@id='register-button']"));
 		register_button.click();
 		WebElement message=driver.findElement(By.xpath("/html/body/div[4]/div[1]/div[4]/div[2]/div/div[2]/div[1]"));
 		String actualmessage=message.getText();
-		System.out.println("Actual Message: " +actualmessage);
-		String expectedmessage="Your registration completed";
+		//System.out.println("Actual Message: " +actualmessage);
+		String expectedmessage=Excel_Utility.readStringData(0, 1,"Registration_Page");
 		Assert.assertEquals(actualmessage, expectedmessage, "Invalid Message");
 	}
 	
