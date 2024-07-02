@@ -446,6 +446,36 @@ public class Sample {
 			  }
 		}  
 		
+		
+		public void webtables()
+		{
+			WebDriver driver = new ChromeDriver();
+			driver.get("https://money.rediff.com/indices");
+			WebElement webtable =driver.findElement(By.xpath("//table[@class='dataTable']//tbody"));
+			List<WebElement> row =webtable.findElements(By.tagName("tr"));
+			int rowsize = row.size();
+			for(int i = 0;i<rowsize;i++)
+			{
+				 List<WebElement> column =row.get(i).findElements(By.tagName("td"));
+				 int columnsize = column.size();
+				 for(int j=0;j<columnsize;j++)
+				 {
+					 String celltext = column.get(j).getText();
+					 
+					 if(celltext.equals("BSE 100"))
+					 {
+						 System.out.println(column.get(1).getText());
+					 }
+				 }
+				 
+				 
+			}
+			
+			
+		}
+		
+		
+		
 //System.out.println(" valiue is "+column.get(1).getText());
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -474,7 +504,8 @@ public class Sample {
 		//obj.tagNamess();
 		//obj.dropdowmn();
 		//obj.window();
-		obj.webtable();
+		//obj.webtable();
+		obj. webtables();
 	}
 
 }
